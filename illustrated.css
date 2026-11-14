@@ -1,0 +1,29 @@
+/* Return to the original illustrated theatre, with etched botanical detail. */
+[hidden]{display:none!important}
+.illustration-details{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none;z-index:1;opacity:.78}
+.cinema-scene .world-art{z-index:2}.cinema-scene .scene-vignette{z-index:3}.cinema-scene .cinema-copy{z-index:4}.cinema-scene .cinema-controls{z-index:5}
+.cinema-scene .world-svg{filter:drop-shadow(0 18px 20px #46364d0d)}
+.cinema-copy h2{font-weight:400}.cinema-kicker:after{content:"";display:block;width:40px;height:1px;background:currentColor;opacity:.35;margin-top:16px}
+.cinema-description{max-width:28em}.scene-action{border-radius:6px;box-shadow:0 6px 22px #382c3412,inset 0 1px 0 #fff5d94d}
+.cinema-greenhouse .scene-vignette{background:linear-gradient(90deg,#f5eddbed,transparent 71%),linear-gradient(0deg,#d3c3a433,transparent 30%)}
+.cinema-seaside .illustration-details{opacity:.7}.cinema-forest .illustration-details{opacity:.95}.cinema-lanterns .illustration-details{opacity:.85}
+.cinema-musicbox .world-art{filter:drop-shadow(0 22px 22px #65475210)}
+.illustration-motes{position:absolute;inset:0;z-index:3;pointer-events:none;overflow:hidden}.illustration-motes i{position:absolute;left:var(--x);top:var(--y);width:var(--size);height:var(--size);border-radius:50%;background:#fff7d5;box-shadow:0 0 12px #ffebb9a0;animation:illustration-mote var(--dur) var(--delay) ease-in-out infinite;opacity:.6}
+.cinema-greenhouse .illustration-motes i,.cinema-clouds .illustration-motes i{background:#b88f66;box-shadow:none;opacity:.35}
+.paper-butterflies{position:absolute;inset:0;z-index:3;pointer-events:none}.paper-butterflies svg{position:absolute;width:37px;left:calc(60% + var(--b)*12%);top:calc(27% + var(--b)*13%);animation:butterfly-flight calc(12s + var(--b)*3s) calc(var(--b)*-4s) ease-in-out infinite alternate;filter:drop-shadow(0 4px 3px #5d4b501c)}
+.butterfly-wing{transform-origin:30px 27px;animation:butterfly-flutter 1.5s ease-in-out infinite alternate}
+#panel-timeline .illustration-details{opacity:.65}#panel-timeline .scene-inner{position:relative;z-index:4}
+.cinema-scene:after{content:"";pointer-events:none;position:absolute;z-index:3;inset:86px 24px calc(var(--theatre-bottom) - 8px);border:1px solid #dfc6a422;border-radius:150px 150px 8px 8px}
+#panel-cake{background:radial-gradient(ellipse at 70% 35%,#80609444,transparent 45%),radial-gradient(ellipse at 20% 75%,#557c8540,transparent 40%),#181b33!important}
+#panel-cake .cake-stage{filter:drop-shadow(0 0 27px #d7a87624)}
+.cake-actions{flex-wrap:wrap;gap:10px}.cake-actions .btn{box-shadow:0 6px 28px #eec37c22}.cake-instruction{max-width:28em;margin-left:auto;margin-right:auto}
+@keyframes illustration-mote{0%,100%{opacity:.2;transform:translate(0,0)}50%{opacity:.8;transform:translate(10px,-18px)}}
+@keyframes butterfly-flight{0%{transform:translate(0,0) rotate(-14deg)}40%{transform:translate(35px,-25px) rotate(12deg)}100%{transform:translate(-22px,-50px) rotate(-7deg)}}
+@keyframes butterfly-flutter{from{transform:scaleX(1)}to{transform:scaleX(.3)}}
+@media(max-width:600px){.illustration-details{object-position:65% center;opacity:.55}.cinema-forest .illustration-details{opacity:.65}.cinema-kicker:after{margin:10px auto 0;width:28px}.cinema-kicker{margin-bottom:10px}.cinema-scene:after{inset:88px 12px calc(var(--theatre-bottom) - 12px);border-radius:110px 110px 6px 6px}.paper-butterflies svg{width:27px;left:calc(18% + var(--b)*27%);top:calc(38% + var(--b)*7%)}.cinema-greenhouse .scene-vignette{background:linear-gradient(180deg,#f6eddb42,transparent 55%,#ebddc32b)}.cinema-seaside .illustration-details{opacity:.5}.cinema-copy{top:112px}.cinema-copy h2{font-size:29px}.cinema-description{margin-top:11px}.cinema-controls{z-index:5}.cake-actions .btn,.cake-actions .ghost-btn{font-size:12px;padding:12px 16px;min-height:44px}}
+@media(max-height:740px) and (max-width:600px){.cinema-copy{top:93px}.cinema-kicker:after{display:none}.cinema-copy h2{font-size:27px}.cake-actions{margin-top:12px}.cake-instruction{font-size:11px}.cake-actions .btn,.cake-actions .ghost-btn{padding:10px 13px}}
+body.gentle .illustration-motes i,body.gentle .paper-butterflies svg,body.gentle .butterfly-wing{animation:none!important}
+body.page-sleep .illustration-motes i,body.page-sleep .paper-butterflies svg,body.page-sleep .butterfly-wing{animation-play-state:paused!important}
+body.gala-open #journey *,body.gala-open #celebration-fx{animation-play-state:paused!important}body.gala-open #celebration-fx{opacity:0}
+/* Unified motion preference */
+:where(html[data-motion="gentle"]) .illustration-motes i,:where(html[data-motion="gentle"]) .paper-butterflies svg,:where(html[data-motion="gentle"]) .butterfly-wing{animation:none!important}

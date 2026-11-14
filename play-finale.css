@@ -1,0 +1,12 @@
+.pg-board{position:relative}
+.pf-layer{position:absolute;left:0;right:0;top:0;z-index:1;pointer-events:none}
+.pf-layer svg{pointer-events:none}
+.pf-layer [class^=pf-g]{transform-box:fill-box;transform-origin:50% 50%}
+.pf-done{display:flex;align-items:center;gap:10px;margin:10px 0 0;padding:6px 6px 6px 8px;border:1px dashed var(--sp-accent,#c87b5a);border-radius:14px;background:rgba(255,255,255,.06)}
+.pf-done[hidden]{display:none!important}
+.pf-sticker{flex:0 0 auto;display:block;width:66px;height:55px;background:transparent;transform:rotate(-3deg)}
+.pf-cap{flex:1 1 auto;min-width:0;margin:0;font-size:14px;line-height:1.45}
+.pf-replay{flex:0 0 auto;font:inherit;font-size:14px;line-height:1.3;min-height:44px;min-width:44px;padding:8px 12px;border-radius:12px;background:transparent;color:inherit;border:1px solid var(--sp-accent,#c87b5a);cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+.pf-replay:focus-visible{outline:3px solid var(--sp-accent,#c87b5a);outline-offset:2px}
+@media (max-width:359px){.pf-done{flex-wrap:wrap}.pf-replay{flex:1 1 100%}}
+@media (orientation:landscape) and (max-height:500px){.pf-sticker{width:52px;height:43px}}

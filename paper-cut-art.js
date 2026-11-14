@@ -1,0 +1,34 @@
+(function(){
+var MB=window.MB=window.MB||{};
+var GROUPS=[[`外弧`,[`云纹`,`花瓣`,`波浪`,`锯齿`]],[`侧边`,[`小心形`,`月牙`,`圆点`,`梅花`]],[`尖角`,[`留空`,`小圆`,`星`,`菱形`]]];
+var PAL=[[`#c7302b`,`#e5594d`,`#8a1c1a`],[`#cc5c76`,`#ef9bad`,`#8c3248`],[`#d3952c`,`#f2c968`,`#93600f`]];
+var STAGES=[`paper`,`cut`,`reveal`,`pasted`],D=Math.PI/180,PI=Math.PI;
+function r1(v){return Math.round(v*10)/10}
+function int(v,lo,hi,d){return typeof v===`number`&&Math.floor(v)===v&&v>=lo&&v<=hi?v:d}
+function rad(o,t){if(o===0)return 70+9*Math.sqrt(Math.abs(Math.sin(PI*(t+1))));if(o===1)return 62+18*Math.pow(Math.max(0,Math.cos(t*PI/2)),.8);if(o===2)return 73+5*Math.cos(3*PI*t);if(o===3){var x=(3*t+3)%2;return 68+12*(1-Math.abs(x-1))}return 77}
+function wedge(o){var s=`M0 0`;for(var i=0;i<=24;i++){var t=i/12-1,a=t*22.5*D,r=rad(o,t);s+=`L${r1(r*Math.sin(a))} ${r1(-r*Math.cos(a))}`}return s+`Z`}
+function fan(h){var a=h*D,x=r1(80*Math.sin(a)),y=r1(-80*Math.cos(a));return `M0 0L${-x} ${y}A80 80 0 0 1 ${x} ${y}Z`}
+var plum=``,star=`M`,k;
+for(k=0;k<5;k++){var a=(-90+72*k)*D;plum+=`<circle cx='${r1(4.3*Math.cos(a))}' cy='${r1(-43+4.3*Math.sin(a))}' r='3.4'/>`}
+for(k=0;k<16;k++){var rr=k%2?6.5:15,b=k*22.5*D;star+=(k?`L`:``)+`${r1(rr*Math.sin(b))} ${r1(-rr*Math.cos(b))}`}
+star=`<path d='${star}Z'/>`;
+var OH=[`<circle cy='-61' r='3.5'/><circle cy='-53' r='1.8'/>`,`<path d='M0 -48Q4.5 -58 0 -68Q-4.5 -58 0 -48Z'/>`,`<path d='M-6 -58Q0 -65 6 -58Q0 -61 -6 -58Z'/><circle cy='-51' r='1.8'/>`,`<path d='M0 -52L5 -62L-5 -62Z'/>`];
+var SH=[`<path d='M0 -36C-9 -42 -8 -52 0 -47C8 -52 9 -42 0 -36Z'/>`,`<path d='M-8 -42A8 8 0 0 0 8 -42A10 10 0 0 1 -8 -42Z'/><circle cy='-53' r='2'/>`,`<circle cy='-28' r='3.5'/><circle cy='-40' r='5'/><circle cy='-51' r='3'/>`,plum];
+var TH=[``,`<circle r='9'/>`,star,`<path d='M0 -14L4.5 -22L0 -30L-4.5 -22Z'/>`];
+function holes(c){var h=``;if(c[0]>=0)h+=OH[c[0]];if(c[1]>=0)h+=`<g transform='rotate(-22.5)'>${SH[c[1]]}</g><g transform='rotate(22.5)'>${SH[c[1]]}</g>`;if(c[2]>=0)h+=TH[c[2]];return h}
+function sc(t){var ring=`fill='none' stroke='#7b3a28' stroke-width='2.4'`;return `<g transform='${t}'><g class='pc-scissor'><path d='M0 0L-28 -7L-3 3Z' fill='#d7dbe0'/><path d='M0 0L-28 7L-3 -3Z' fill='#aab2bc'/><circle cx='7' cy='-5' r='4.6' ${ring}/><circle cx='7' cy='5' r='4.6' ${ring}/><circle r='1.3' fill='#4a4a4a'/></g></g>`}
+function scene(u,p,tr){var pts=[[104,62],[196,30],[128,34],[92,112],[234,124]],s=``;for(var i=0;i<(tr?5:2);i++)s+=`<circle cx='${pts[i][0]}' cy='${pts[i][1]}' r='1.1'/>`;
+return `<rect width='320' height='240' fill='url(#${u}-w)'/><path d='M66 194V96A94 94 0 0 1 254 96V194Z' fill='url(#${u}-f)'/><path d='M78 188V96A82 82 0 0 1 242 96V188Z' fill='url(#${u}-s)'/><g fill='#fff3d6'>${s}</g><circle cx='218' cy='48' r='7' fill='#f7e4bb' opacity='.85'/><path d='M96 180L130 30' stroke='#fff' stroke-opacity='.07' stroke-width='12'/><path d='M160 14V188M78 128H242' stroke='#6e4428' stroke-width='3'/><rect x='58' y='188' width='204' height='9' rx='2' fill='url(#${u}-f)'/><rect x='62' y='197' width='196' height='4' fill='#000' opacity='.25'/><rect y='204' width='320' height='36' fill='#5a3b2a'/><path d='M0 204H320' stroke='#8a5f42' stroke-width='2'/><path d='M244 168Q240 156 235 150M244 168Q247 154 253 147' stroke='#6f8f6a' stroke-width='1.4' fill='none'/><circle cx='235' cy='149' r='2.4' fill='#f3c6a5'/><circle cx='253' cy='146' r='2.4' fill='#f6dcb4'/><path d='M240 188Q234 180 240 172V168H248V172Q254 180 248 188Z' fill='#8fa79a'/><g fill='${p[0]}' opacity='.85'><path d='M40 222l6-3 2 5z'/><path d='M78 230l5 1-3 4z'/><path d='M292 232l4 4-5 1z'/><circle cx='60' cy='214' r='1.6'/></g>`}
+function render(o){o=o||{};var c=int(o.color,0,2,0),si=STAGES.indexOf(o.stage),S=STAGES[si<0?0:si],f=int(o.folds,0,3,0),tr=int(o.tier,0,2,1),u=o.uid===`pc-dialog`||o.uid===`pc-preview`?o.uid:`pc-art`,raw=Array.isArray(o.cuts)?o.cuts:[],cu=[0,1,2].map(function(i){return int(raw[i],-1,3,-1)}),p=PAL[c],fl=`url(#${u}-p)`,mk=`url(#${u}-m)`,W=wedge(cu[0]),g=``;
+if(S===`reveal`||S===`pasted`){for(var i=0;i<8;i++)g+=`<g class='pc-sector' style='--pc-i:${i}' transform='rotate(${i*45})${i%2?` scale(-1,1)`:``}'><g class='pc-sector-motion'><path d='${W}' fill='${fl}' stroke='${fl}' stroke-width='.6' mask='${mk}'/></g></g>`;
+g=`<g transform='translate(160,112)'><g class='pc-paper'>${g}</g></g>`;
+if(S===`reveal`)g=`<circle cx='160' cy='112' r='92' fill='#ffe6b0' opacity='.12'/>`+g;else g+=`<g fill='#f4e4c1' opacity='.75'><rect x='150' y='27' width='20' height='8' transform='rotate(-6 160 31)'/><rect x='150' y='189' width='20' height='8' transform='rotate(5 160 193)'/></g>`}
+else if(S===`cut`){var h=``;if(cu[0]<0)h+=`<path d='M-24.6 -67.7A72 72 0 0 1 24.6 -67.7'/>`;if(cu[1]<0)h+=`<g transform='rotate(-22.5)'><circle cy='-42' r='6'/></g><g transform='rotate(22.5)'><circle cy='-42' r='6'/></g>`;if(cu[2]<0)h+=`<circle r='8'/>`;
+g=`<g transform='translate(160,196) scale(1.5)'><g class='pc-paper'><path d='${W}' fill='${p[2]}' transform='translate(-2,1.6)' mask='${mk}'/><path d='${W}' fill='${fl}' mask='${mk}'/><g fill='none' stroke='#fff' stroke-width='.7' stroke-dasharray='2 2' opacity='.7'>${h}</g></g></g>`}
+else{var T=[[`160,112`,1],[`160,150`,1],[`160,176`,1.15],[`160,196`,1.5]][f],cr=`stroke='${p[2]}' stroke-width='.8' stroke-dasharray='3 3' opacity='.7'`,inner;
+if(f){var sh=f===3?wedge(-1):fan(180/Math.pow(2,f));inner=`<path d='${sh}' fill='${p[2]}' transform='translate(-2,1.6)'/><path d='${sh}' fill='${fl}'/>`+(f<3?`<path d='M0 0V-80' ${cr}/>`:``)}else inner=`<circle r='80' fill='${fl}'/><path d='M-80 0H80' ${cr}/>`;
+g=`<g transform='translate(${T[0]}) scale(${T[1]})'><g class='pc-paper'>${inner}</g></g>`}
+var defs=`<linearGradient id='${u}-w' x1='0' y1='0' x2='0' y2='1'><stop offset='0' stop-color='#2e2230'/><stop offset='1' stop-color='#4b3329'/></linearGradient><linearGradient id='${u}-s' x1='0' y1='0' x2='0' y2='1'><stop offset='0' stop-color='#25325e'/><stop offset='.55' stop-color='#7a5a86'/><stop offset='1' stop-color='#f0ad7a'/></linearGradient><linearGradient id='${u}-f' x1='0' y1='0' x2='1' y2='0'><stop offset='0' stop-color='#8a5a36'/><stop offset='.5' stop-color='#b98250'/><stop offset='1' stop-color='#7a4c2c'/></linearGradient><radialGradient id='${u}-p' gradientUnits='userSpaceOnUse' cx='0' cy='0' r='82'><stop offset='0' stop-color='${p[1]}'/><stop offset='1' stop-color='${p[0]}'/></radialGradient><mask id='${u}-m' maskUnits='userSpaceOnUse' x='-100' y='-100' width='200' height='200'><rect x='-100' y='-100' width='200' height='200' fill='#fff'/><g fill='#000'>${holes(cu)}</g></mask>`;
+return `<svg xmlns='http://www.w3.org/2000/svg' class='pc-art' viewBox='0 0 320 240' aria-hidden='true' focusable='false' data-stage='${S}' data-tier='${tr}'><defs>${defs}</defs>${scene(u,p,tr)}${g}${S===`cut`?sc(`translate(230,132) rotate(-35)`):sc(`translate(266,222) rotate(-12) scale(.85)`)}</svg>`}
+MB.paperCutArt={render:render,GROUPS:GROUPS};
+})();
