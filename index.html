@@ -7,6 +7,8 @@
 <title>今天，回家吃饭</title>
 <link rel='stylesheet' href='home.css?v=home1'>
 <link rel='stylesheet' href='home-keepsake.css?v=home1'>
+<link rel='stylesheet' href='paper-notes.css?v=paper1'>
+<link rel='stylesheet' href='paper-crafts.css?v=paper1'>
 </head>
 <body data-scene='intro'>
 <button class='motion-control ghost' id='motion' type='button' aria-pressed='false'>动画开启</button>
@@ -24,9 +26,68 @@
 <article class='page on'><div class='pic'><figure class='print-house'><img src='assets/street.webp' alt='夜色里为你亮着灯的家'></figure></div><div class='txt'><p class='kicker'>一本手作的小书</p><h2>写给妈妈</h2><p>饭做好了。今天你先坐下，有几句话，想趁菜还热着说给你听。</p></div></article>
 <article class='page'><div class='pic'><div class='pop' id='pop'><img class='bq' src='assets/bouquet.webp' alt='层层纸瓣做成的康乃馨花束' width='1145' height='1374'><div class='pocket'><span>给妈妈</span></div><button class='tab' id='tab' aria-label='拉下纸条，让花升起'>拉 ↓</button></div></div><div class='txt'><h2>一束不会谢的花</h2><p>拉下一截纸签。今天的第一束花，送给你。</p><button class='cta sm' id='pull'>拉一下，让花升起来</button></div></article>
 <article class='page'><div class='pic'><div class='fold' id='fold'><div class='letter' id='letter' aria-hidden='true'><p>妈妈：<br>有些话平时说得太少。<br>谢谢你。也盼以后一起吃饭的日子，再多一些。今天先把这束花收下，再慢慢吃蛋糕。<span>爱你的家人</span></p></div><i class='flap t'></i><i class='flap bt'></i><i class='seal'>爱</i></div></div><div class='txt'><h2>一封折起来的信</h2><p>有些话当面说会不好意思，就写在这里。</p><button class='cta sm' id='openL' aria-controls='letter' aria-expanded='false'>打开信</button></div></article>
+<article class='page craft-sea' aria-label='海边 · 漂流瓶'>
+  <div class='pic'>
+  <svg viewBox='0 0 360 260' preserveAspectRatio='xMidYMid meet' aria-hidden='true'><defs><linearGradient id='csSky' x1='0' y1='0' x2='0' y2='1'><stop offset='0' stop-color='#17223b'/><stop offset='1' stop-color='#3a4d72'/></linearGradient></defs><rect width='360' height='260' fill='url(#csSky)'/><g fill='#f4ead5' opacity='.75'><circle cx='40' cy='34' r='1.5'/><circle cx='96' cy='58' r='1'/><circle cx='150' cy='26' r='1.6'/><circle cx='214' cy='48' r='1'/><circle cx='330' cy='112' r='1.2'/></g><circle cx='288' cy='60' r='24' fill='#efe2c4'/><circle cx='280' cy='54' r='5' fill='#e2cfa8'/><circle cx='296' cy='70' r='3' fill='#e2cfa8'/><path class='cs-beam' d='M58 114L210 94V132Z' fill='#f2c46b'/><path d='M0 160Q30 140 72 146Q104 150 124 162Z' fill='#5a4a3c'/><rect x='53' y='118' width='10' height='30' fill='#f4ead5'/><rect x='53' y='125' width='10' height='5' fill='#b8325a'/><rect x='53' y='137' width='10' height='5' fill='#b8325a'/><path d='M51 118L58 109L65 118Z' fill='#b8325a'/><circle cx='58' cy='114' r='2.2' fill='#f2c46b'/><path class='cs-w cs-w1' d='M-30 158Q-10 150 10 158T50 158T90 158T130 158T170 158T210 158T250 158T290 158T330 158T370 158T410 158V260H-30Z' fill='#2b3f63'/><g class='cs-glint' fill='#f4ead5'><rect x='270' y='164' width='30' height='2' rx='1'/><rect x='278' y='171' width='16' height='2' rx='1'/></g><g class='cs-boat'><g transform='translate(24 151)'><path d='M0 0H30L24 8H6Z' fill='#f4ead5'/><path d='M15-18V0H5Z' fill='#e0b57a'/><path d='M16-14V0H24Z' fill='#f4ead5'/></g></g><path class='cs-w cs-w2' d='M-30 180Q-5 171 20 180T70 180T120 180T170 180T220 180T270 180T320 180T370 180T420 180V260H-30Z' fill='#40597f'/><path d='M-10 262V210Q36 196 88 206Q124 214 150 262Z' fill='#e3c79a'/><path d='M-10 217Q36 203 88 213' fill='none' stroke='#b8763a' stroke-width='2' stroke-dasharray='3 5' opacity='.6'/><circle cx='24' cy='238' r='3' fill='#c9a46e'/><circle cx='100' cy='242' r='2' fill='#c9a46e'/><path d='M74 230l5-6 5 6z' fill='#b8325a' opacity='.75'/><path class='cs-heart' d='M244 176c-3-4-9-1-6 4l6 6 6-6c3-5-3-8-6-4z' fill='#b8325a'/><g class='cs-bottle'><g class='cs-bob'><g transform='translate(54 206) rotate(-14)'><rect x='-16' y='-9' width='26' height='18' rx='7' fill='#bcd8d2' fill-opacity='.9' stroke='#1f2d4a' stroke-width='1.5'/><rect x='9' y='-4' width='9' height='8' rx='2' fill='#bcd8d2' stroke='#1f2d4a' stroke-width='1.5'/><rect class='cs-note' x='-11' y='-4.5' width='17' height='9' rx='2' fill='#f4ead5' stroke='#b8763a'/><rect class='cs-cork' x='17' y='-4.5' width='5' height='9' rx='1.5' fill='#b8325a'/><path d='M-11-5Q-4-7 3-5' stroke='#fff' stroke-width='1.5' fill='none' opacity='.7'/></g></g></g><path class='cs-w cs-w3' d='M100 262Q112 210 140 204Q160 196 180 204T220 204T260 204T300 204T340 204T380 204V262Z' fill='#5d7aa3'/></svg>
+  </div>
+  <div class='txt'>
+  <h2>海边 · 漂流瓶</h2>
+  <p>沙滩上有一只空瓶子。写一句心愿卷进去，潮水会把它送回家。</p>
+  <div class='cs-write'>
+  <textarea maxlength='60' rows='2' aria-label='写给家人的一句心愿，最多60字' placeholder='想对家里人说的一句话（留空也能寄）'></textarea>
+  <button class='cs-btn cs-send' type='button'>塞好瓶塞，放进海里</button>
+  </div>
+  <div class='cs-echo' hidden>
+  <p>瓶子漂向灯塔的光里了。纸条上写着：</p>
+  <p class='cs-msg' aria-live='polite'></p>
+  <button class='cs-btn cs-again' type='button'>捞回来，再写一封</button>
+  </div>
+  </div>
+</article>
+<article class='page craft-forest' data-lit='0' aria-label='林间 · 萤火小路'>
+  <div class='pic'>
+  <svg viewBox='0 0 360 260' preserveAspectRatio='xMidYMid meet' aria-hidden='true'><defs><linearGradient id='cfSky' x1='0' y1='0' x2='0' y2='1'><stop offset='0' stop-color='#141d33'/><stop offset='1' stop-color='#2a3a5c'/></linearGradient><radialGradient id='cfGlow'><stop offset='0' stop-color='#f6d68a' stop-opacity='.9'/><stop offset='1' stop-color='#f6d68a' stop-opacity='0'/></radialGradient></defs><rect width='360' height='260' fill='url(#cfSky)'/><g class='cf-stars' fill='#f4ead5'><circle cx='120' cy='30' r='1.4'/><circle cx='176' cy='52' r='1'/><circle cx='232' cy='24' r='1.5'/><circle cx='60' cy='40' r='1'/><circle cx='262' cy='70' r='1'/></g><circle cx='300' cy='44' r='16' fill='#efe2c4'/><circle cx='307' cy='39' r='14' fill='#18223b'/><path d='M0 160L20 100L40 160L56 116L76 160L96 92L118 160H240L262 96L284 160L300 110L322 160L340 88L360 160V210H0Z' fill='#22324f'/><g transform='translate(170 112)'><path d='M0 18L16 4L32 18Z' fill='#b8325a'/><rect x='22' y='6' width='4' height='8' fill='#5a4a3c'/><path class='cf-smoke' d='M24 4q-4-5 0-10t0-10' fill='none' stroke='#efe2c4' stroke-width='2' stroke-linecap='round'/><rect x='3' y='18' width='26' height='18' fill='#e9dcc0'/><rect x='8' y='22' width='8' height='7' fill='#3a4560'/><rect x='19' y='24' width='6' height='12' fill='#8a5a2e'/><g class='cf-r' data-r='5'><circle cx='12' cy='25' r='13' fill='url(#cfGlow)'/><rect x='8' y='22' width='8' height='7' fill='#f2c46b'/><rect x='19' y='24' width='6' height='12' fill='#e3a94a'/></g></g><path d='M0 172Q90 142 180 152Q270 142 360 170V260H0Z' fill='#2b4058'/><path d='M0 216Q120 198 360 212V260H0Z' fill='#24374f'/><g fill='#283c56'><path d='M-6 204L22 124L50 204Z'/><path d='M40 200L64 140L88 200Z'/><path d='M282 200L308 132L334 200Z'/><path d='M318 208L344 120L370 208Z'/></g><path d='M176 262C104 236 266 222 210 200C160 182 238 168 204 158C194 155 193 152 192 150' fill='none' stroke='#e9dcc0' stroke-opacity='.22' stroke-width='16' stroke-linecap='round'/><path class='cf-trail' pathLength='100' d='M176 262C104 236 266 222 210 200C160 182 238 168 204 158C194 155 193 152 192 150' fill='none' stroke='#f2c46b' stroke-width='4' stroke-linecap='round'/><path d='M-4 70Q40 80 92 62M364 50Q320 64 268 48' fill='none' stroke='#141d30' stroke-width='5'/><g fill='#1a2740'><ellipse cx='22' cy='80' rx='9' ry='4'/><ellipse cx='76' cy='72' rx='8' ry='4'/><ellipse cx='330' cy='62' rx='9' ry='4'/><ellipse cx='292' cy='60' rx='8' ry='4'/></g><g class='cf-r' data-r='1' fill='#f6e08a'><circle class='cf-fly' cx='106' cy='204' r='2'/><circle class='cf-fly' cx='148' cy='196' r='1.6'/><circle class='cf-fly' cx='96' cy='226' r='1.4'/></g><g class='cf-r' data-r='2'><ellipse cx='330' cy='60' rx='9' ry='4' fill='#e3a94a'/><ellipse cx='292' cy='58' rx='8' ry='4' fill='#b8325a'/><ellipse cx='310' cy='66' rx='7' ry='3.5' fill='#e3a94a'/><circle class='cf-fly' cx='272' cy='186' r='1.8' fill='#f6e08a'/><circle class='cf-fly' cx='234' cy='210' r='1.4' fill='#f6e08a'/></g><g class='cf-r' data-r='3'><path d='M49 56l2-6 3 4zM63 56l-2-6-3 4z' fill='#b8763a'/><ellipse cx='56' cy='64' rx='8' ry='10' fill='#b8763a'/><ellipse cx='56' cy='68' rx='5' ry='6' fill='#e9dcc0'/><circle cx='52.5' cy='61' r='2.6' fill='#f4ead5'/><circle cx='59.5' cy='61' r='2.6' fill='#f4ead5'/><circle cx='52.5' cy='61' r='1.1' fill='#1f2d4a'/><circle cx='59.5' cy='61' r='1.1' fill='#1f2d4a'/><circle class='cf-fly' cx='140' cy='168' r='1.6' fill='#f6e08a'/></g><g class='cf-r' data-r='4' fill='#f6e08a'><circle class='cf-fly' cx='226' cy='130' r='1.8'/><circle class='cf-fly' cx='250' cy='118' r='1.4'/><circle class='cf-fly' cx='270' cy='104' r='1.8'/><circle class='cf-fly' cx='212' cy='112' r='1.2'/><circle cx='290' cy='92' r='2.4'/></g><g class='cf-lamp' data-i='1' transform='translate(126 214)'><circle class='cf-glow' cy='-6' r='20' fill='url(#cfGlow)'/><path d='M0-3V24' stroke='#5a4a3c' stroke-width='2'/><rect x='-7' y='-16' width='14' height='3' rx='1' fill='#b8325a'/><path class='cf-shade' d='M-6-13H6L8-4Q0 1-8-4Z'/><circle r='22' fill='#000' fill-opacity='0'/></g><g class='cf-lamp' data-i='2' transform='translate(252 196)'><circle class='cf-glow' cy='-6' r='20' fill='url(#cfGlow)'/><path d='M0-3V24' stroke='#5a4a3c' stroke-width='2'/><rect x='-7' y='-16' width='14' height='3' rx='1' fill='#b8325a'/><path class='cf-shade' d='M-6-13H6L8-4Q0 1-8-4Z'/><circle r='22' fill='#000' fill-opacity='0'/></g><g class='cf-lamp' data-i='3' transform='translate(162 176)'><circle class='cf-glow' cy='-6' r='20' fill='url(#cfGlow)'/><path d='M0-3V24' stroke='#5a4a3c' stroke-width='2'/><rect x='-7' y='-16' width='14' height='3' rx='1' fill='#b8325a'/><path class='cf-shade' d='M-6-13H6L8-4Q0 1-8-4Z'/><circle r='22' fill='#000' fill-opacity='0'/></g><g class='cf-lamp' data-i='4' transform='translate(240 152)'><circle class='cf-glow' cy='-6' r='20' fill='url(#cfGlow)'/><path d='M0-3V24' stroke='#5a4a3c' stroke-width='2'/><rect x='-7' y='-16' width='14' height='3' rx='1' fill='#b8325a'/><path class='cf-shade' d='M-6-13H6L8-4Q0 1-8-4Z'/><circle r='22' fill='#000' fill-opacity='0'/></g><g class='cf-lamp' data-i='5' transform='translate(148 130)'><circle class='cf-glow' cy='-6' r='20' fill='url(#cfGlow)'/><path d='M0-3V24' stroke='#5a4a3c' stroke-width='2'/><rect x='-7' y='-16' width='14' height='3' rx='1' fill='#b8325a'/><path class='cf-shade' d='M-6-13H6L8-4Q0 1-8-4Z'/><circle r='22' fill='#000' fill-opacity='0'/></g><g fill='#121a2c'><path d='M0 260Q20 210 64 214Q40 240 0 260Z'/><path d='M0 238Q10 198 40 192Q30 224 0 238Z'/><path d='M360 260Q340 206 292 216Q320 240 360 260Z'/></g></svg>
+  </div>
+  <div class='txt'>
+  <h2>林间 · 萤火小路</h2>
+  <p class='cf-msg' aria-live='polite'>林子里有点黑。点亮路边的纸灯，一盏一盏照着回家的路。</p>
+  <div class='cf-btns' role='group' aria-label='五盏纸灯'>
+  <button class='cf-btn' type='button' data-i='1' aria-pressed='false' aria-label='点亮第1盏纸灯'>1</button>
+  <button class='cf-btn' type='button' data-i='2' aria-pressed='false' aria-label='点亮第2盏纸灯'>2</button>
+  <button class='cf-btn' type='button' data-i='3' aria-pressed='false' aria-label='点亮第3盏纸灯'>3</button>
+  <button class='cf-btn' type='button' data-i='4' aria-pressed='false' aria-label='点亮第4盏纸灯'>4</button>
+  <button class='cf-btn' type='button' data-i='5' aria-pressed='false' aria-label='点亮第5盏纸灯'>5</button>
+  </div>
+  <p class='cf-foot'><span class='cf-count'>已点亮 0 / 5</span>
+  <button class='cf-reset' type='button'>熄灯重来</button></p>
+  </div>
+</article>
+<article class='page craft-notes'>
+  <div class='pic'>
+    <svg class='paper-notes-art' viewBox='0 0 300 170' aria-hidden='true'>
+      <defs><pattern id='notes-lines' width='8' height='12' patternUnits='userSpaceOnUse'><path d='M0 11.5H8' stroke='#e6c5ab'/></pattern></defs>
+      <path d='M57 139H245' stroke='#ab7654' opacity='.25' stroke-linecap='round' stroke-width='5'/>
+      <rect x='73' y='35' width='145' height='99' rx='5' fill='#d8b692' transform='rotate(8 145 84)' opacity='.5'/>
+      <rect x='73' y='33' width='145' height='99' rx='5' fill='#f7deb9' stroke='#e2bc9b' transform='rotate(8 145 84)'/>
+      <g transform='rotate(-9 148 83)'>
+        <path d='M73 34H208L222 48V132H73Z' fill='#fff7e9' stroke='#dbaa8e'/>
+        <path d='M208 34V48H222' fill='#f0d5c0'/>
+        <path d='M92 57H202V112H92Z' fill='url(#notes-lines)'/>
+        <path d='M100 75c0-7 10-10 14-2 4-8 14-5 14 2 0 8-14 15-14 15s-14-7-14-15Z' fill='#bd695d'/>
+        <path d='M139 78H190M139 90H181M98 104H190' stroke='#ac7459' stroke-linecap='round' opacity='.55'/>
+      </g>
+      <path d='M56 59l2 8 8 2-8 2-2 8-2-8-8-2 8-2ZM240 51l1.5 6 6 1.5-6 1.5-1.5 6-1.5-6-6-1.5 6-1.5Z' fill='#b27752'/>
+    </svg>
+  </div>
+  <div class='txt'>
+    <h2>祝福短笺</h2>
+    <p>写下想对妈妈说的话，也可以看一整页祝福慢慢亮起。</p>
+    <button type='button' class='cta sm' id='paper-notes-open' aria-haspopup='dialog'>打开祝福短笺</button>
+  </div>
+</article>
 <article class='page'><div class='pic'><svg viewBox='0 0 240 200' aria-hidden='true'><path d='M120 0v44' stroke='#6b4320' stroke-width='2'/><path d='M100 62L58 152h124L140 62z' fill='#ffcf7a' opacity='.4'/><path d='M96 64q24-34 48 0z' fill='#d89a3a'/><ellipse cx='120' cy='150' rx='46' ry='6' fill='#e9dcc4'/><path d='M84 148q36-64 72 0z' fill='#a9afbd'/><circle cx='120' cy='98' r='5' fill='#d9a441'/><path d='M24 156h192' stroke='#6b4320' stroke-width='6' stroke-linecap='round'/></svg></div><div class='txt'><h2>饭做好了</h2><p>菜都上桌了，蛋糕还罩着。回到餐桌，等你亲手揭开。</p><button class='cta' id='toC'>回到餐桌</button></div></article>
 </div>
-<nav class='bnav' aria-label='翻页'><button class='ghost' id='prev'>上一页</button><span id='pg'>1 / 4</span><button class='ghost' id='next'>下一页</button></nav>
+<nav class='bnav' aria-label='翻页'><button class='ghost' id='prev'>上一页</button><span id='pg'>1 / 7</span><button class='ghost' id='next'>下一页</button></nav>
 </section>
 <section id='c' class='scene' data-s='cover' aria-label='生日蛋糕'>
 <img class='art bg' src='assets/table.webp' alt=''>
@@ -56,7 +117,14 @@
     </div>
   </div>
 </dialog>
-<script src='home.js?v=home2'></script>
+<dialog id='home-notes-dialog' aria-label='祝福短笺'>
+  <form method='dialog' class='paper-notes-loading'>
+    <button type='submit' class='paper-notes-return' autofocus>回到手作书</button>
+  </form>
+</dialog>
+<script src='home.js?v=paper1'></script>
+<script src='paper-notes.js?v=paper1'></script>
+<script src='paper-crafts.js?v=paper1'></script>
 <script src='home-keepsake.js?v=home1'></script>
 </body>
 </html>

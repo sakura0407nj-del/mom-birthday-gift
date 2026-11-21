@@ -37,7 +37,13 @@ fold.onclick=$('#openL').onclick=()=>setFold(!fold.classList.contains('open'));
 $('#prev').onclick=()=>page(pi-1);
 $('#next').onclick=()=>{page(pi+1);if(pi===pages.length-1)$('#toC').focus({preventScroll:true})};
 $('#toC').onclick=()=>go('c');
-document.addEventListener('keydown',e=>{if(scene!=='b')return;if(e.key==='ArrowRight')page(pi+1);if(e.key==='ArrowLeft')page(pi-1)});
+document.addEventListener('keydown',event=>{
+  if(scene!=='b'||event.defaultPrevented||event.altKey||event.ctrlKey||event.metaKey||event.shiftKey)return;
+  if(document.querySelector('dialog[open]')||event.target.closest('input,textarea,select,[contenteditable]'))return;
+  if(event.key!=='ArrowRight'&&event.key!=='ArrowLeft')return;
+  event.preventDefault();
+  page(pi+(event.key==='ArrowRight'?1:-1));
+});
 
 const fx=(()=>{const cv=$('#fx'),x=cv.getContext('2d'),compact=matchMedia("(max-width: 720px), (max-height: 500px)"),PAL=['255,214,140','255,242,214','255,180,120','255,156,176','246,224,150'];let raf=0,run=false,MAX=0,t=0,last=0,P=[],S=[],plan=[],cb=null,w=0,h=0,k=1;
 function size(){const d=Math.min(window.devicePixelRatio||1,MAX<=176?1.25:1.5);w=innerWidth;h=innerHeight;cv.width=Math.round(w*d);cv.height=Math.round(h*d);x.setTransform(d,0,0,d,0,0);k=Math.min(w,h)/420+.45}
@@ -90,7 +96,7 @@ function finish(){cT.forEach(clearTimeout);cT=[];fx.stop();C.dataset.s='done';$(
 function resetC(){cT.forEach(clearTimeout);cT=[];fx.stop();C.dataset.s='cover';$('.wish').setAttribute('aria-hidden','true');$('#lift').hidden=false;['#skipC','#replay','#again','#keepsake-open'].forEach(s=>{$(s).hidden=true})}
 $('#lift').onclick=lift;$('#skipC').onclick=finish;
 $('#replay').onclick=()=>{resetC();if(gentle())lift();else requestAnimationFrame(()=>requestAnimationFrame(()=>{if(scene==='c')lift()}))};
-$('#again').onclick=()=>{delete $('#b').dataset.flowerSeen;delete $('#b').dataset.letterSeen;page(0);setP(0);setFold(false);A.dataset.shot='0';line.classList.remove('in');go('intro');setTimeout(()=>$('#start').focus({preventScroll:true}),400)};
+$('#again').onclick=()=>{delete $('#b').dataset.flowerSeen;delete $('#b').dataset.letterSeen;document.dispatchEvent(new Event('home:restart'));page(0);setP(0);setFold(false);A.dataset.shot='0';line.classList.remove('in');go('intro');setTimeout(()=>$('#start').focus({preventScroll:true}),400)};
 document.addEventListener('visibilitychange',()=>{fx.vis();if(document.hidden&&scene==='a'&&!paused&&!gentle())togglePause()});
 page(0);
 updateActiveScene(scene);

@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>祝福短笺 · 今天，回家吃饭</title>
+<script src="motion-policy.js?v=window10a"></script>
+<link rel="stylesheet" href="style.css?v=window10a">
+<link rel="stylesheet" href="atelier.css?v=window10a">
+<link rel="stylesheet" href="theatre.css?v=window10a">
+<link rel="stylesheet" href="illustrated.css?v=window10a">
+<link rel="stylesheet" href="gala.css?v=window10a">
+<link rel="stylesheet" href="performance.css?v=window10a">
+<link rel="stylesheet" href="scenes-atelier.css?v=window10a">
+<link rel="stylesheet" href="note-revival.css?v=window10a">
+<link rel="stylesheet" href="blessing-windows.css?v=window10a">
+<link rel="stylesheet" href="paper-notes.css?v=paper1">
+<script defer src="data/content.js?v=window10a"></script>
+<script defer src="api.js?v=window10a"></script>
+<script defer src="scenery.js?v=window10a"></script>
+<script defer src="actors.js?v=window10a"></script>
+<script defer src="note-revival.js?v=window10a"></script>
+<script defer src="blessing-windows.js?v=window10a"></script>
+<script defer src="birthday-wall.js?v=paper1"></script>
+<script defer src="paper-notes-frame.js?v=paper1"></script>
+</head>
+<body class="paper-notes-embedded">
+<button class="paper-notes-return" type="button">回到手作书</button>
+<main id="journey" class="journey theatre-deck">
+    <section class="scene stage-current is-active scene--paper scene--rose" id="panel-wall" data-name="祝福" aria-labelledby="wall-title">
+      <div class="scene-bg" aria-hidden="true">
+      </div>
+      <div class="scenery" data-scene="greet"></div>
+      <div class="actors" data-act="greet"></div>
+
+      <div class="scene-inner">
+        <header class="panel-head">
+          <p class="panel-kicker">10 / LITTLE NOTES</p>
+          <h2 class="panel-title" id="wall-title">把祝福留在这里</h2>
+        </header>
+        <p class="panel-lede" id="wall-intro">写一句想对妈妈说的话，审核后会出现在这里。</p>
+
+        <div class="wall-list" id="wall-list" aria-live="polite"></div>
+        <p class="wall-empty" id="wall-empty" hidden></p>
+
+        <p class="local-note">仅保存在当前浏览器，不会自动发送，也不会展示给其他访客。</p><div class="wall-switch" id="wall-switch">
+          <button class="btn" id="wall-compose" type="button">写一句祝福</button>
+        </div>
+
+        <form class="wall-form" id="wall-form" hidden novalidate>
+          <div class="field field--inline">
+            <label for="wall-name">你的名字</label>
+            <input id="wall-name" name="name" type="text" inputmode="text" autocomplete="name"
+                   maxlength="20" placeholder="怎么写都可以" required>
+            <p class="field-hint" id="wall-name-hint"></p>
+          </div>
+
+          <div class="field">
+            <label for="wall-content">想说的话</label>
+            <textarea id="wall-content" name="content" rows="2" maxlength="200"
+                      placeholder="比如：妈妈，愿你每天都有小小的欢喜。" required></textarea>
+            <p class="field-hint" id="wall-content-hint"></p>
+          </div>
+
+          <button class="btn btn--wide" id="wall-submit" type="submit">收藏这句祝福</button>
+          <button class="ghost-btn ghost-btn--sm wall-back" id="wall-back" type="button">看看已收藏的祝福</button>
+          <p class="form-msg" id="wall-msg" role="status"></p>
+        </form>
+      </div>
+    </section>
+</main>
+<p class="paper-notes-status" role="status"></p>
+</body>
+</html>

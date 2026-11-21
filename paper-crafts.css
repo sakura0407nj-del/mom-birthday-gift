@@ -1,0 +1,112 @@
+.craft-sea .pic,.craft-forest .pic{position:relative;overflow:hidden;background:linear-gradient(#17223b,#2b3f63)}
+.craft-forest .pic{background:linear-gradient(#141d33,#24374f)}
+.craft-sea .pic::after,.craft-forest .pic::after{content:'';position:absolute;inset:0;border:5px solid #f4ead5;box-shadow:inset 0 0 0 1px #b8763a,inset 0 0 18px rgba(20,29,51,.55);pointer-events:none}
+.craft-sea svg,.craft-forest svg{position:absolute;inset:0;width:100%;height:100%;display:block}
+.craft-sea .cs-w{stroke:#f4ead5;stroke-opacity:.5;stroke-width:1.5}
+.craft-sea .cs-w,.craft-sea .cs-bob{transform-box:fill-box;transform-origin:center}
+.craft-sea.on .cs-w1{animation:cs-sway 6s ease-in-out 6 alternate}
+.craft-sea.on .cs-w2{animation:cs-sway 5s ease-in-out 6 alternate-reverse}
+.craft-sea.on .cs-w3{animation:cs-sway 4s ease-in-out 8 alternate}
+@keyframes cs-sway{to{transform:translateX(-8px)}
+}
+.craft-sea .cs-bottle{transition:transform 2.6s cubic-bezier(.45,.05,.3,1)}
+.craft-sea.cs-sent .cs-bottle{transform:translate(186px,-12px)}
+.craft-sea.cs-sent.on .cs-bob{animation:cs-bob 1.8s ease-in-out 2.6s 8 alternate}
+@keyframes cs-bob{to{transform:translateY(3px) rotate(6deg)}
+}
+.craft-sea .cs-boat{transition:transform 3.4s ease-in-out .3s}
+.craft-sea.cs-sent .cs-boat{transform:translateX(200px)}
+.craft-sea .cs-cork,.craft-sea .cs-note,.craft-sea .cs-heart{opacity:0;transition:opacity .4s}
+.craft-sea .cs-heart{transition:opacity .6s 2.6s}
+.craft-sea.cs-sent .cs-cork,.craft-sea.cs-sent .cs-note,.craft-sea.cs-sent .cs-heart{opacity:1}
+.craft-sea .cs-beam{opacity:.12;transition:opacity 1.2s}
+.craft-sea.cs-sent .cs-beam{opacity:.45}
+.craft-sea .cs-glint{opacity:.25;transition:opacity 1.2s}
+.craft-sea.cs-sent .cs-glint{opacity:.9}
+.craft-sea .txt h2,.craft-forest .txt h2{margin:0 0 .25em;font-size:1.15rem;color:#b8325a}
+.craft-sea .txt p,.craft-forest .txt p{margin:0 0 .5em;line-height:1.55;font-size:.95rem}
+.craft-sea [hidden]{display:none!important}
+.craft-sea textarea{display:block;width:100%;box-sizing:border-box;min-height:60px;margin:0 0 8px;padding:8px 10px;font:inherit;font-size:16px;color:#1f2d4a;background:#fffaf0;border:2px solid #b8763a;border-radius:10px;resize:none}
+.craft-sea .cs-btn,.craft-forest .cf-reset{min-height:44px;padding:0 18px;border:0;border-radius:22px;background:#1f2d4a;color:#f4ead5;font:inherit;font-weight:700;cursor:pointer;box-shadow:0 3px 0 #b8763a}
+.craft-sea .cs-again{background:#b8325a;box-shadow:0 3px 0 #1f2d4a}
+.craft-sea .txt .cs-msg{padding:4px 8px;font-weight:700;color:#1f2d4a;background:#f4ead5;border-left:3px solid #b8325a;overflow-wrap:anywhere}
+.craft-sea textarea:focus-visible,.craft-sea button:focus-visible,.craft-forest button:focus-visible{outline:3px solid #b8325a;outline-offset:2px}
+.craft-forest .cf-lamp{cursor:pointer}
+.craft-forest .cf-glow{opacity:0;transition:opacity .6s}
+.craft-forest .cf-shade{fill:#4a4258;stroke:#f4ead5;stroke-opacity:.4;transition:fill .5s}
+.craft-forest .cf-lamp.is-on .cf-glow{opacity:1}
+.craft-forest .cf-lamp.is-on .cf-shade{fill:#f2c46b}
+.craft-forest .cf-r{opacity:0;pointer-events:none;transition:opacity .8s}
+.craft-forest .cf-r.is-on{opacity:1}
+.craft-forest.on .cf-r.is-on .cf-fly{animation:cf-blink 1.6s ease-in-out 6 alternate}
+@keyframes cf-blink{from{opacity:.3}
+to{opacity:1}
+}
+.craft-forest .cf-trail{stroke-dasharray:100;stroke-dashoffset:100;transition:stroke-dashoffset 1s ease}
+.craft-forest[data-lit='1'] .cf-trail{stroke-dashoffset:80}
+.craft-forest[data-lit='2'] .cf-trail{stroke-dashoffset:60}
+.craft-forest[data-lit='3'] .cf-trail{stroke-dashoffset:40}
+.craft-forest[data-lit='4'] .cf-trail{stroke-dashoffset:20}
+.craft-forest[data-lit='5'] .cf-trail{stroke-dashoffset:0}
+.craft-forest .cf-smoke{opacity:0;transition:opacity 1s .4s}
+.craft-forest.cf-done .cf-smoke{opacity:.7}
+.craft-forest .cf-stars{opacity:.35;transition:opacity 1s}
+.craft-forest.cf-done .cf-stars{opacity:.95}
+.craft-forest .cf-btns{display:flex;flex-wrap:wrap;gap:8px}
+.craft-forest .cf-btn{width:44px;height:44px;padding:0;border:2px solid #1f2d4a;border-radius:12px 12px 18px 18px;background:#f4ead5;color:#1f2d4a;font:inherit;font-weight:700;cursor:pointer;transition:background .3s}
+.craft-forest .cf-btn.is-on{background:#f2c46b;border-color:#b8325a;box-shadow:0 0 0 3px rgba(242,196,107,.45)}
+.craft-forest .txt .cf-foot{display:flex;align-items:center;gap:12px;margin:8px 0 0}
+.craft-forest .cf-count{font-size:.9rem;color:#8a5a2e}
+.craft-forest .cf-reset{padding:0 14px;font-weight:400;background:transparent;color:#1f2d4a;border:2px solid #1f2d4a;box-shadow:none}
+body[data-motion='gentle'] .craft-sea *,body[data-motion='gentle'] .craft-forest *{animation:none!important;transition:none!important}
+
+.craft-sea .pic > svg,
+.craft-forest .pic > svg {
+  position: static;
+  max-width: 540px;
+  overflow: visible;
+}
+
+.craft-sea .pic,
+.craft-forest .pic {
+  background: #19253d;
+  padding: 6px;
+}
+
+.craft-sea .txt h2,
+.craft-forest .txt h2 {
+  color: #7d2b43;
+  font-size: clamp(22px, min(6vw, 6vh), 30px);
+}
+
+.craft-forest .cf-btn {
+  flex: 0 0 44px;
+}
+
+.craft-sea .cs-echo {
+  padding-bottom: 5px;
+}
+
+.craft-sea textarea {
+  scroll-margin-block: 8px;
+}
+
+@media (max-aspect-ratio: 1/1) {
+  .page.craft-sea,
+  .page.craft-forest {
+    grid-template-rows: minmax(0, 1fr) auto;
+  }
+
+  .craft-sea .txt,
+  .craft-forest .txt {
+    max-height: 56vh;
+    max-height: 56dvh;
+    padding: 12px 17px 16px;
+  }
+}
+
+@media (max-width: 359px) {
+  .craft-forest .cf-btns {
+    gap: 6px;
+  }
+}
