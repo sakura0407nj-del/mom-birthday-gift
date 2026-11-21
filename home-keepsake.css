@@ -1,0 +1,52 @@
+#c[data-s='done'] .cbar { gap:6px; padding-inline:8px; }
+#c[data-s='done'] .cbar button { min-height:44px; padding:0 12px; font-size:14px; }
+#home-keepsake {
+  box-sizing:border-box;
+  width:min(690px, calc(100vw - 20px));
+  max-height:calc(100vh - 20px);
+  max-height:calc(100dvh - 20px - var(--st) - var(--sb));
+  margin:auto;
+  border:1px solid #bc9b6b;
+  border-radius:16px;
+  padding:0;
+  background:#f7ead2;
+  color:#3e2824;
+  box-shadow:0 20px 65px #070c1d9c;
+  overflow:auto;
+  overscroll-behavior:contain;
+}
+#home-keepsake::backdrop { background:#081021bf; }
+.home-card-head {
+  display:flex; align-items:center; justify-content:space-between; gap:14px;
+  position:sticky; top:0; z-index:1;
+  padding:12px 16px; border-bottom:1px solid #bc9b6b70; background:#f7ead2;
+}
+.home-card-head h2 { margin:0; font-size:clamp(22px,5vw,30px); }
+.home-card-head form { margin:0; }
+.home-card-close {
+  min-height:44px; min-width:44px; padding:0;
+  border:1px solid #936b4d89; color:#3e2824; background:#fff5e4; font-size:23px;
+}
+.home-card-body { display:grid; grid-template-columns:minmax(180px,.9fr) minmax(0,1fr); gap:18px; padding:18px; }
+.home-card-plate { display:grid; align-self:start; place-items:center; min-height:100px; background:#c9a97b2b; border-radius:5px; }
+#home-card-preview { display:block; width:100%; height:auto; box-shadow:0 8px 22px #3c2a2540; border-radius:3px; }
+.home-card-controls { display:flex; align-items:flex-start; flex-direction:column; justify-content:center; gap:12px; min-width:0; }
+.home-card-controls p { margin:0; line-height:1.6; }
+.home-card-options { display:flex; flex-wrap:wrap; gap:8px; }
+.home-card-options button {
+  min-height:44px; font-size:14px; padding:0 12px; border:1px solid #a58560;
+  color:#503527; background:#fff5e4;
+}
+.home-card-options button[aria-pressed='true'] { border-color:#784151; background:#784151; color:#fff8e9; }
+#home-card-status { min-height:1.6em; color:#624c40; font-size:14px; }
+#home-card-download,.home-card-garden { display:inline-flex; min-height:44px; align-items:center; color:#603748; font-weight:600; }
+#home-card-download { padding:0 15px; border-radius:22px; background:#77404e; text-decoration:none; color:#fff4e6; }
+#home-keepsake :focus-visible { outline:3px solid #6b3c4b; outline-offset:3px; }
+@media(max-width:530px) {
+  .home-card-body { grid-template-columns:1fr; gap:14px; padding:12px 16px 16px; }
+  .home-card-plate { width:min(190px,100%); justify-self:center; }
+  .home-card-controls { gap:8px; }
+}
+@media(max-height:480px) and (min-aspect-ratio:1/1) {
+  .home-card-plate { width:min(170px,100%); }
+}
