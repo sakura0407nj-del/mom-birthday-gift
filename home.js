@@ -61,12 +61,24 @@ function boom(shell) {
       vy:Math.sin(angle)*spread*k,l:1,d:drag+Math.random()*.005,c:shell.c});
   }
 }
-function loop(now){const dt=Math.min(50,now-last),f=dt/16.7;last=now;t+=dt;
-while(plan.length&&plan[0].at<=t){const p=plan.shift();p.x0=p.tx+(Math.random()-.5)*60;p.u=0;S.push(p)}
+function completeEffect(){const done=cb;stop();if(done)done()}
+function loop(now){
+  // Particle physics uses a bounded step, but missed frames cannot delay the show.
+  const elapsed=Math.max(0,now-last),dt=Math.min(50,elapsed),f=dt/16.7;
+  last=now;t+=elapsed;
+  if(t>=7600){completeEffect();return}
+  while(plan.length&&plan[0].at<=t){
+    const p=plan.shift();
+    const age=t-p.at;
+    if(age>1250)continue;
+    p.x0=p.tx+(Math.random()-.5)*60;
+    p.u=Math.min(.98,age/720);
+    S.push(p);
+  }
 x.clearRect(0,0,w,h);x.globalCompositeOperation='lighter';x.lineCap='round';
 for(let i=S.length-1;i>=0;i--){const s=S[i];s.u+=dt/720;const e=1-Math.pow(1-Math.min(s.u,1),2),px=s.x0+(s.tx-s.x0)*e,py=h+(s.ty-h)*e;x.strokeStyle='rgba('+s.c+',.9)';x.lineWidth=2.2;x.beginPath();x.moveTo(px,py+14);x.lineTo(px,py);x.stroke();if(s.u>=1){boom(s);S.splice(i,1)}}
 for(let i=P.length-1;i>=0;i--){const p=P[i];p.vx*=1-.016*f;p.vy=p.vy*(1-.016*f)+.032*f*k;p.x+=p.vx*f;p.y+=p.vy*f;p.l-=p.d*f;if(p.l<=0){P[i]=P[P.length-1];P.pop();continue}x.strokeStyle='rgba('+p.c+','+p.l.toFixed(2)+')';x.lineWidth=1.8;x.beginPath();x.moveTo(p.x-p.vx*3,p.y-p.vy*3);x.lineTo(p.x,p.y);x.stroke()}
-if(!plan.length&&!S.length&&!P.length){const done=cb;stop();if(done)done();return}
+if(!plan.length&&!S.length&&!P.length){completeEffect();return}
 raf=requestAnimationFrame(loop)}
 function stop(){run=false;cancelAnimationFrame(raf);raf=0;P=[];S=[];plan=[];cb=null;cv.dataset.fx='idle';if(x)x.clearRect(0,0,w,h)}
 function vis(){if(document.hidden){cancelAnimationFrame(raf);raf=0}else if(run&&!raf){last=performance.now();raf=requestAnimationFrame(loop)}}
