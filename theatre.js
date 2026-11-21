@@ -118,6 +118,7 @@
 
   // Six distinct scenes, each with a local, repeatable interaction.
   $('water-garden').addEventListener('click',()=>{
+    if (MB.birthdayWindow?.water()) return;
     const p=$('panel-greenhouse');if(p.classList.contains('garden-bloomed')){p.classList.remove('garden-bloomed','garden-watering');$('water-garden').innerHTML='洒下一点温柔 <span>✿</span>';$('greenhouse-status').textContent='花苞已经收好，等你再带来一场春雨。';return;}
     p.classList.add('garden-watering','garden-bloomed');$('water-garden').innerHTML='再看一次花开 <span>↺</span>';$('greenhouse-status').textContent='每一朵花都在说：妈妈，愿你被温柔以待。';
   });

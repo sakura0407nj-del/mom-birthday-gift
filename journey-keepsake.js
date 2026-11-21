@@ -39,6 +39,28 @@ if(ls){try{var saved=ls.getItem(KEY)||'[]';list=saved.length<=2048?clean(JSON.pa
 function ordered(){return GAMES.filter(function(g){return list.indexOf(g)>-1})}
 function record(e){var id=e&&e.detail&&e.detail.id;if(typeof id!=='string'||GAMES.indexOf(id)<0||list.indexOf(id)>-1)return;list.push(id);if(ls){try{ls.setItem(KEY,JSON.stringify(list))}catch(_){ls=null;persistent=false}}toc()}
 function stampSvg(id,cls){var s=el('svg',{viewBox:'0 0 48 48','aria-hidden':'true',focusable:'false','class':cls||null});[[EDGE,1.2,1],[RING,.7,.6],[MOTIF[id],1.5,1]].forEach(function(q){s.appendChild(el('path',{d:q[0],fill:'none',stroke:'currentColor','stroke-width':q[1],'stroke-linecap':'round','stroke-linejoin':'round',opacity:q[2]<1?q[2]:null}))});return s}
+
+// A small print of the same window, using the same stage and bounds for SVG and PNG.
+function printWindow(P, snapshot, colors) {
+  const {progress, celebrated} = snapshot;
+  const x = 142, y = 116;
+  P('M0 6Q0 0 6 0H122Q128 0 128 6V150H0Z', {x,y,f:'#181b33',s:colors.gold,w:2});
+  P('M10 113Q29 96 62 111T118 105V138H10Z', {x,y,f:'#393452'});
+  P('M24 103V94L31 89L39 94V103ZM92 101V93L101 87L109 93V101Z', {x,y,f:'#655575'});
+  P('M30 95H34V99H30ZM99 94H103V98H99Z', {x,y,f:celebrated?'#ffe39f':'#433955'});
+  P('M18 15H110M64 1V79M0 79H128', {x,y,s:'#a58b7799',w:2});
+  P('M52 126H76L72 145H56Z', {x,y,f:'#c68072'});
+  P('M64 125Q65 110 62 97', {x,y,s:colors.sage,w:2});
+  if(progress >= 1) P('M64 120Q49 120 48 112Q58 110 64 120ZM64 114Q68 105 78 106Q75 113 64 114Z', {x,y,f:colors.sage});
+  if(progress < 2) P('M62 101Q53 94 62 86Q69 94 62 101Z', {x,y,f:colors.berry});
+  else {
+    const petals = progress === 2 ? 4 : 7;
+    for(let i=0;i<petals;i++) P(PETAL,{x:x+62,y:y+95,k:progress===2?.41:.69,r:i*360/petals,f:colors.berry});
+    P(DOT,{x:x+62,y:y+95,k:.56,f:colors.gold});
+  }
+  P('M-5 151H133V156H-5Z', {x,y,f:colors.gold});
+}
+
 function compose(tk,ids){var T=THEME[tk],O=[];
 function P(d,o){o=o||{};o.d=d;O.push(o)}
 function X(t,x,y,z,c,a,g){O.push({t:t,x:x,y:y,z:z,c:c,a:a||'center',g:g})}
@@ -47,6 +69,7 @@ function sprig(x,y,k,r){var m=r?-1:1;P(STEM,{s:T.sage,w:3,x:x,y:y,k:k,r:r});P(LE
 P('M0 0H900V1200H0Z',{f:T.mat});P('M40 40H860V1160H40Z',{f:T.paper});
 P('M72 72H828V1128H72Z',{s:T.gold,w:2.5});P('M86 86H814V1114H86Z',{s:T.gold,w:1,o:.55});
 [[72,72],[828,72],[72,1128],[828,1128]].forEach(function(q){P(DIA,{f:T.gold,x:q[0],y:q[1]})});
+if (tk==='night' && MB.birthdayWindow) printWindow(P, MB.birthdayWindow.snapshot(), T);
 if(tk==='night'){P(MOON,{f:T.gold,x:724,y:192,o:.92});[[176,176,1],[258,124,.6],[612,132,.5],[796,312,.7],[128,336,.5],[812,520,.45],[112,700,.6],[800,860,.45],[150,960,.4]].forEach(function(s){P(STAR,{f:T.gold,x:s[0],y:s[1],k:s[2],o:.85})});sprig(790,1080,.85,180)}
 else{sprig(110,130,.95,0);sprig(790,1080,.95,180)}
 X('拾 光 成 笺',450,236,26,T.gold);X('A KEEPSAKE FOR MOM',450,274,17,T.soft);X('妈妈，生日快乐',450,384,80,T.title);
@@ -106,6 +129,7 @@ function finish(){busy=false;lockSettings(false);U.make.disabled=false;U.make.re
 function fail(){finish();say('这次没有印好，请再点一次试试。')}
 function show(u,blob,tk,ids){var old=url,was=U.res.hidden;url=blob?u:null;
 U.img.alt='生日纪念笺：妈妈，生日快乐。'+THEME[tk].name+'配色，'+(ids.length?'印有'+ids.map(function(i){return NAME[i]}).join('、')+'纪念章。':'印有一枚生日纪念章。');
+if(tk==='night'&&MB.birthdayWindow)U.img.alt+='窗台上有'+MB.birthdayWindow.snapshot().flower+'。';
 U.img.src=u;U.dl.href=u;if(old&&old!==u){try{URL.revokeObjectURL(old)}catch(e){}}
 U.res.hidden=false;finish();U.make.textContent='重新印制';say('纪念笺已印好。手机可长按图片保存，电脑可点「下载 PNG」。');
 if(was)move(U.res,[{opacity:0,transform:'translateY(12px) scaleY(.94)'},{opacity:1,transform:'none'}],520)}
@@ -116,12 +140,13 @@ else show(cv.toDataURL('image/png'),false,tk,ids)}catch(e){if(my===gen)fail()}},
 function reset(){gen++;stopAll();busy=false;lockSettings(false);if(U.make){U.make.disabled=false;U.make.removeAttribute('aria-busy');U.make.textContent='印好并保存图片';U.res.hidden=true;U.img.removeAttribute('src');U.img.alt='';U.dl.removeAttribute('href');say('')}if(url){try{URL.revokeObjectURL(url)}catch(e){}url=null}}
 function onAlbum(){var m=byId('surprise-dialog'),grid=byId('surprise-album-grid');if(!m||!grid||!grid.parentNode||m.dataset.view!=='album')return;
 if(!U.sec)build();if(U.sec.nextSibling!==grid)grid.parentNode.insertBefore(U.sec,grid);fill();
-if(jump){jump=false;try{U.h.focus()}catch(e){}}}
+if(jump){const target=jump==='night'?U.make:U.h;jump=false;try{target.focus()}catch(e){}}}
 function toc(){var bs=document.querySelectorAll('#contents-dialog .chapter-links button[data-go]');
 Array.prototype.forEach.call(bs,function(b){var go=String(b.getAttribute('data-go'));if(go.indexOf('panel-'))return;var id=go.slice(6);if(!MOTIF[id])return;
 var n=b.querySelector('.jk-toc-note');if(!n){b.classList.add('jk-toc');b.appendChild(stampSvg(id,'jk-toc-art'));n=mk('span','jk-toc-note','留下一枚纪念');b.appendChild(n)}
 var d=list.indexOf(id)>-1;b.dataset.jkDone=String(d);n.hidden=!d})}
-function closing(){var a=document.querySelector('#panel-closing .closing-actions');if(!a||a.querySelector('.jk-closing-btn')||!(MB.keepsakes&&typeof MB.keepsakes.openAlbum==='function'))return;
+MB.journeyLetter={openNight(){if(!MB.keepsakes)return;theme='night';jump='night';MB.keepsakes.openAlbum();jump=false;}};
+function closing(){if(byId('make-window-card'))return;var a=document.querySelector('#panel-closing .closing-actions');if(!a||a.querySelector('.jk-closing-btn')||!(MB.keepsakes&&typeof MB.keepsakes.openAlbum==='function'))return;
 var b=btn('jk-closing-btn');b.appendChild(stampSvg('closing'));b.appendChild(mk('span',null,'制作旅途纪念笺'));
 b.addEventListener('click',function(){jump=true;try{MB.keepsakes.openAlbum()}catch(e){}jump=false});a.appendChild(b)}
 function init(){toc();closing();var m=byId('surprise-dialog');if(m)m.addEventListener('close',reset)}

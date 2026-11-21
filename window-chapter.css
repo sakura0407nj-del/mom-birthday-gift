@@ -1,0 +1,81 @@
+[data-gift-window] { display: block; }
+
+/* Keep the established greenhouse and its editable sign behind the new window. */
+#panel-greenhouse .world-art > [data-gift-window] {
+  position: absolute;
+  inset: 5% 15% 12% 21%;
+  z-index: 2;
+  border-radius: 14px;
+  box-shadow: 0 24px 60px #3f4d3254;
+  overflow: clip;
+}
+
+#panel-greenhouse .world-art > [data-gift-window] + .world-svg { opacity: .32; }
+#panel-cake > [data-gift-window] {
+  position: absolute;
+  inset: calc(var(--ms-head, 54px) + 12px) max(4vw, 16px) auto auto;
+  width: clamp(54px, 12vw, 145px);
+  aspect-ratio: 360 / 382;
+  opacity: .78;
+  pointer-events: none;
+  overflow: clip;
+  border: 1px solid #f2cc9977;
+  border-radius: 6px;
+}
+
+#panel-closing .gift-window-ending {
+  display: grid;
+  grid-template-columns: minmax(0, .85fr) minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(16px, 5vw, 46px);
+  width: min(650px, 100%);
+  margin: 26px auto 14px;
+  padding: clamp(14px, 3vw, 28px);
+  border: 1px solid #bd96597a;
+  border-radius: 17px;
+  background: radial-gradient(ellipse at 6% 0%, #3f3150, #242033 58%, #17172b);
+  color: #fff0dc;
+  text-align: left;
+  box-shadow: 0 14px 45px #27203644;
+}
+
+#panel-closing .gift-window-ending [data-gift-window] {
+  width: 100%;
+  aspect-ratio: 360 / 382;
+  overflow: clip;
+  border-radius: 8px;
+  border: 1px solid #ae8d61a0;
+}
+
+#panel-closing .gift-window-ending h3 {
+  margin: 0 0 8px;
+  font: 400 clamp(24px, 4vw, 34px)/1.3 var(--font-serif, serif);
+  color: #ffe4ae;
+}
+
+#panel-closing .gift-window-ending p { font-size: 1rem; line-height: 1.7; margin: 0 0 16px; }
+#make-window-card {
+  min-height: 44px;
+  padding: 8px 16px;
+  border: 0;
+  border-radius: 100px;
+  background: #f5d18b;
+  color: #292138;
+  font: 600 1rem var(--font-sans, sans-serif);
+  cursor: pointer;
+}
+
+#make-window-card:focus-visible { outline: 2px solid #fff5e6; outline-offset: 4px; }
+#contents-dialog #keepsake-menu { min-height: 44px; margin: 12px 0; }
+#surprise-dialog .jk .jk-make { scroll-margin: 76px 0 24px; }
+
+@media (max-width: 620px) {
+  #panel-greenhouse .world-art > [data-gift-window] {
+    inset: 1% auto 1% 50%;
+    width: min(66%, 230px);
+    transform: translateX(-50%);
+  }
+  #panel-closing .gift-window-ending { grid-template-columns: 1fr; }
+  #panel-closing .gift-window-ending [data-gift-window] { width: min(100%, 240px); justify-self: center; }
+  #make-window-card { width: 100%; }
+}
