@@ -5,6 +5,7 @@
   const textarea = sea.querySelector('textarea');
   const write = sea.querySelector('.cs-write');
   const echo = sea.querySelector('.cs-echo');
+  const transit = sea.querySelector('.cs-transit');
   const wish = sea.querySelector('.cs-msg');
   const send = sea.querySelector('.cs-send');
   const retrieve = sea.querySelector('.cs-again');
@@ -22,21 +23,33 @@
     '家里的窗子亮了，有人在等。',
   ];
   const lit = new Set();
+  let arrivalTimer;
 
   send.addEventListener('click', () => {
     const text = textarea.value.replace(/\s+/g, ' ').trim() || defaultWish;
     wish.textContent = '「' + text + '」';
     sea.classList.add('cs-sent');
+    book.dataset.bottleSeen = 'true';
     write.hidden = true;
-    echo.hidden = false;
-    retrieve.focus({ preventScroll: true });
+    transit.hidden = false;
+    const land = () => {
+      const shouldFocus = sea.classList.contains('on') &&
+        (document.activeElement === document.body || transit.contains(document.activeElement));
+      transit.hidden = true;
+      echo.hidden = false;
+      if (shouldFocus) retrieve.focus({ preventScroll: true });
+    };
+    if (document.body.dataset.motion === 'gentle') land();
+    else arrivalTimer = setTimeout(land, 1550);
   });
 
   function resetBottle() {
+    clearTimeout(arrivalTimer);
     sea.classList.remove('cs-sent');
     textarea.value = '';
     wish.textContent = '';
     echo.hidden = true;
+    transit.hidden = true;
     write.hidden = false;
   }
 
@@ -56,6 +69,7 @@
     counter.textContent = `已点亮 ${lit.size} / ${lights.length}`;
     if (lit.size === lights.length) {
       forest.classList.add('cf-done');
+      book.dataset.firefliesSeen = 'true';
       forestMessage.textContent = '五盏灯连成一条路，萤火一直飞到门口。窗子亮着，饭在桌上。';
       return;
     }
@@ -84,5 +98,7 @@
   document.addEventListener('home:restart', () => {
     resetBottle();
     resetLights();
+    delete book.dataset.bottleSeen;
+    delete book.dataset.firefliesSeen;
   });
 })();

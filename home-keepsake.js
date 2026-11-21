@@ -12,10 +12,12 @@
     warm: {name:'暖灯纸笺', edge:'#cbaa72', paper:'#f8ebd2', ink:'#3e2824', accent:'#8b3d48'},
     night: {name:'星夜来信', edge:'#bd9b69', paper:'#141e34', ink:'#fff0cf', accent:'#e0b277'},
   };
-  // Drawn from the original birthday album's flower, letter and cake seals.
+  // Only activities completed on this reading leave a seal.
   const seals = {
     flower: ['花已收下', 'M24 37V23M24 31Q18 29 16 24M24 33Q30 31 32 26M19 14Q19 23 24 23Q29 23 29 14L26.5 17L24 13L21.5 17Z'],
     letter: ['信已打开', 'M14 18H34V33H14ZM14 18L24 26L34 18M14 33L21 26M34 33L27 26'],
+    bottle: ['心愿已出航', 'M14 33L20 16Q21 14 23 15L30 18Q32 19 31 22L25 35Q23 36 20 35ZM23 15L25 11L30 13L28 17M13 38Q18 34 23 38T34 37M18 28L24 30L27 23L21 21Z'],
+    fireflies: ['小路已点亮', 'M17 30H31L29 17H19ZM17 17L24 12L31 17M24 21V27M14 22H11M34 22H37M17 35Q24 32 31 35'],
     cake: ['生日快乐', 'M14 31L34 26V35L14 37ZM14 31L30 22L34 26M14 34L34 30.5M30 22V17M30 17Q28 15 30 12.5Q32 15 30 17'],
   };
   let revision = 0, imageUrl = '';
@@ -124,6 +126,8 @@
       const collected = [];
       if (book.dataset.flowerSeen==='true') collected.push('flower');
       if (book.dataset.letterSeen==='true') collected.push('letter');
+      if (book.dataset.bottleSeen==='true') collected.push('bottle');
+      if (book.dataset.firefliesSeen==='true') collected.push('fireflies');
       collected.push('cake');
       draw(ctx,source,theme,collected);
       const blob = await new Promise(resolve => card.toBlob(resolve,'image/png'));

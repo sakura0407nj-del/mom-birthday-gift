@@ -1,0 +1,126 @@
+.page[data-art] .pic {
+  min-width: 0;
+  container-type: size;
+  overflow: hidden;
+  padding: 0;
+  background: radial-gradient(ellipse at 51% 56%, #e2b98c, transparent 72%);
+}
+
+.page[data-art] .pic::after {
+  content: none;
+}
+
+.book-illustration {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: min(calc(100% - 28px), 620px);
+  width: min(calc(100% - 28px), 620px, calc((100cqh - 20px) * 18 / 13));
+  aspect-ratio: 18 / 13;
+  margin: 0;
+  overflow: hidden;
+  border-radius: 4px;
+  background: #493b44;
+  box-shadow: 0 0 0 1px #a87e56aa, 0 0 0 5px #fff4de, 0 7px 13px 4px #63402342;
+}
+
+.book-illustration > img,
+.book-illustration > .book-overlay {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  max-width: none;
+  height: 100%;
+}
+
+.book-illustration > img { object-fit: cover; }
+.page[data-art] .fold { width: min(80%, 340px); height: 71%; }
+.page[data-art] .flap.t {
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  height: 61%;
+  background: linear-gradient(160deg, #fff3d2, #deb384);
+}
+.page[data-art] .flap.bt { height: 60%; background: linear-gradient(#d4a477, #f0ce9e); }
+.page[data-art] .letter { font-size: clamp(11px, min(3.35vw, 4vh), 17px); }
+.page[data-art] .letter span { margin-top: 3px; }
+.page[data-art] .pop { height: 100%; }
+.page[data-art] .bq { width: 82%; left: 9%; height: 96%; bottom: 5%; }
+.page[data-art] .pocket { bottom: 7%; height: 41%; }
+.page[data-art] .tab { z-index: 1; bottom: 0; }
+
+.book-glow {
+  position: absolute;
+  inset: 10% 10%;
+  opacity: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse at var(--lx, 57%) var(--ly, 52%), #ffdc8552, transparent 48%);
+  mix-blend-mode: screen;
+}
+.door-glow { --lx: 59%; --ly: 49%; }
+.notes-glow { --lx: 51%; --ly: 58%; }
+.table-glow { --lx: 52%; --ly: 26%; }
+.page.on .book-glow { animation: book-light 1.8s ease-out both; }
+@keyframes book-light { 28% { opacity: 1; } 100% { opacity: .3; } }
+
+.craft-sea .cs-w { stroke-opacity: .64; }
+.craft-sea .cs-beam { opacity: 0; }
+.craft-sea.cs-sent .cs-beam { opacity: .62; }
+.craft-sea .cs-bottle { transition-duration: 1.55s; }
+.craft-sea.cs-sent .cs-bottle { transform: translate(177px, -31px); }
+.craft-sea .cs-boat { transition: transform 2s ease-in-out .15s; }
+.craft-sea.cs-sent .cs-boat { transform: translate(241px, -38px); }
+.craft-sea .cs-heart { transition-delay: 1.4s; }
+.craft-sea.cs-sent.on .cs-bob { animation: cs-bob 1.3s ease-in-out 1.55s 4 alternate; }
+.craft-forest .cf-lamp { color: #55566c; }
+.craft-forest .cf-lamp.is-on { color: #ffd591; }
+.craft-forest .cf-arrival { opacity: 0; transform-origin: 53% 48%; }
+.craft-forest.on.cf-done .cf-arrival { animation: book-arrival 1.7s ease-out both; }
+@keyframes book-arrival {
+  from { opacity: 0; transform: translateY(8px) scale(.8); }
+  38% { opacity: 1; }
+  to { opacity: .82; transform: none; }
+}
+
+.paper-turn {
+  position: fixed;
+  inset: 0;
+  z-index: 4;
+  overflow: hidden;
+  pointer-events: none;
+  color: var(--turn-ink, #813143);
+}
+.paper-turn-sheet {
+  position: absolute;
+  inset: -3%;
+  background:
+    linear-gradient(120deg, transparent 86%, #663b2830 86%, #fff4d9a0 88%, transparent 93%),
+    linear-gradient(110deg, var(--turn-edge, #c38974), var(--turn-paper, #f5d1aa) 18% 76%, var(--turn-edge, #c38974));
+  border-block: 1px solid #fff6e4;
+  box-shadow: 0 0 22px #1c122d70;
+}
+.paper-turn-motif {
+  position: absolute;
+  left: 50%;
+  top: 48%;
+  width: clamp(88px, 23vw, 154px);
+  height: auto;
+  transform: translate(-50%, -50%);
+  overflow: visible;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.paper-turn-motif circle { fill: currentColor; stroke: none; }
+
+@media (min-aspect-ratio: 1/1) {
+  .page[data-art] .txt { padding-inline: clamp(14px, 2.8vw, 40px); }
+}
+@media (max-width: 375px) {
+  .page[data-art] .pic { margin-inline: -1px; }
+  .page[data-art] .fold { height: 77%; }
+}
+
+body[data-motion="gentle"] .craft-forest.cf-done .cf-arrival { opacity: .82; }
